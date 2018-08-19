@@ -26,7 +26,7 @@ public class JPAConfiguration {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setUsername("sa");
 		dataSource.setPassword("");
-		dataSource.setUrl("jdbc:h2:database/casadocodigo");
+		dataSource.setUrl("jdbc:h2:mem:acasadocodigo;DB_CLOSE_DELAY=-1");
         dataSource.setDriverClassName("org.h2.Driver");
 		factoryBean.setDataSource(dataSource);
 		

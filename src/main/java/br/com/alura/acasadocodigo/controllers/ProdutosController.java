@@ -3,9 +3,11 @@ package br.com.alura.acasadocodigo.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.alura.acasadocodigo.daos.ProdutoDAO;
 import br.com.alura.acasadocodigo.models.Produto;
+import br.com.alura.acasadocodigo.models.TipoPreco;
 
 @Controller
 public class ProdutosController {
@@ -15,8 +17,10 @@ public class ProdutosController {
 	private ProdutoDAO dao;
 
 	@RequestMapping("/produtos/form")
-	public String form() {
-		return "produtos/form";
+	public ModelAndView form() {
+		ModelAndView modelAndView = new ModelAndView("produtos/form");
+		modelAndView.addObject("tipos", TipoPreco.values());
+		return modelAndView;
 	}
 	
 	@RequestMapping("/produtos")
