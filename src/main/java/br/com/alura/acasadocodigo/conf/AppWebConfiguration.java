@@ -34,11 +34,11 @@ import br.com.alura.acasadocodigo.infra.FileSaver;
 import br.com.alura.acasadocodigo.models.CarrinhoCompras;
 
 @EnableWebMvc
+@EnableCaching
 @ComponentScan(basePackageClasses= {HomeController.class, 
-									ProdutoDAO.class, 
+									ProdutoDAO.class,
 									FileSaver.class, 
 									CarrinhoCompras.class})
-@EnableCaching
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Bean
@@ -97,7 +97,7 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	}
 	
 	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer){
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
 }

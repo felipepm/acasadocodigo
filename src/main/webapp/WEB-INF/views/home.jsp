@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,8 +52,15 @@
 			<div id="header-content">
 				<nav id="main-nav">
 					
+					
 					<ul class="clearfix">
-						<li><a href="/cart" rel="nofollow">Carrinho</a></li>
+						<security:authorize access="isAuthenticated()">
+							<li><a href="${s:mvcUrl('PC#listar').build()}" rel="nofollow">Lista de Produtos</a></li>
+							
+							<li><a href="${s:mvcUrl('PC#form').build()}" rel="nofollow">Cadastro de Produtos</a></li>					
+						</security:authorize>
+						
+						<li><a href="/cart" rel="nofollow">Seu Carrinho</a></li>
 
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
 
