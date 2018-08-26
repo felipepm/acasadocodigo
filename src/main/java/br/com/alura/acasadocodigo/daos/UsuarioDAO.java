@@ -19,30 +19,26 @@ public class UsuarioDAO implements UserDetailsService {
 	@PersistenceContext
 	private EntityManager manager;
 	
-	public Usuario loadUserByUsername(String email) {
-		insert();
-		
+	public Usuario loadUserByUsername(String email) {		
 		List<Usuario> usuarios = manager.createQuery("select u from Usuario u where u.email = :email", Usuario.class).setParameter("email", email).getResultList();
 		
 		if (usuarios.isEmpty()) {
-			throw new UsernameNotFoundException("Usuário " + email + " não foi encontrado");
+			System.out.println("Usando Mock");
+			return mock(email);
+//			throw new UsernameNotFoundException("Usuário " + email + " não foi encontrado");
 		}
 		
 		return usuarios.get(0);
 	}
 	
-	private void insert() {
-		try {
-			List<Role> roles = new ArrayList<>();
-			roles.add(new Role("ROLE_ADMIN"));
-			Usuario usuario = new Usuario();
-			usuario.setEmail("admin@casadocodigo.com.br");
-			usuario.setSenha("$2a$04$qP517gz1KNVEJUTCkUQCY.JzEoXzHFjLAhPQjrg5iP6Z/UmWjvUhq");
-			usuario.setRoles(roles);
-			manager.persist(usuario);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private Usuario mock(String email) {
+		List<Role> roles = new ArrayList<>();
+		roles.add(new Role("ROLE_ADMIN"));
+		Usuario usuario = new Usuario();
+		usuario.setEmail(email);
+		usuario.setSenha("$2a$04$qP517gz1KNVEJUTCkUQCY.JzEoXzHFjLAhPQjrg5iP6Z/UmWjvUhq");
+		usuario.setRoles(roles);
+		return usuario;
 	}
 
 }
