@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -38,13 +39,15 @@
 
 					<ul class="clearfix">
 						<security:authorize access="isAuthenticated()">
-							<li><a href="${s:mvcUrl('PC#listar').build()}" rel="nofollow">Lista de Produtos</a></li>
+							<li><a href="${s:mvcUrl('PC#listar').build()}" rel="nofollow"><s:message code="menu.product_list" /></a></li>
 							
-							<li><a href="${s:mvcUrl('PC#form').build()}" rel="nofollow">Cadastro de Produtos</a></li>					
+							<li><a href="${s:mvcUrl('PC#form').build()}" rel="nofollow"><s:message code="menu.product" /></a></li>					
 						</security:authorize>
-						<li><a href="${s:mvcUrl('CCC#itens').build()}" rel="nofollow">Carrinho (${carrinhoCompras.quantidade })</a></li>
-						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
-						<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
+						<li><a href="${s:mvcUrl('CCC#itens').build()}" rel="nofollow"><s:message code="menu.carrinho" arguments="${carrinhoCompras.quantidade }" /> </a></li>
+						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow"><s:message code="menu.sobre" /></a></li>
+						<li><a href="/pages/perguntas-frequentes" rel="nofollow"><s:message code="menu.perguntas" /></a></li>
+						<li><a href="?locale=pt" rel="nofollow"><s:message code="menu.pt" /></a></li>
+						<li><a href="?locale=en_US" rel="nofollow"><s:message code="menu.en" /></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -52,14 +55,14 @@
 	</header>
 	<nav class="categories-nav">
 		<ul class="container">
-			<li class="category"><a href="http://www.casadocodigo.com.br">Home</a></li>
-			<li class="category"><a href="/collections/livros-de-agile"> Agile </a></li>
-			<li class="category"><a href="/collections/livros-de-front-end"> Front End </a></li>
-			<li class="category"><a href="/collections/livros-de-games"> Games </a></li>
-			<li class="category"><a href="/collections/livros-de-java"> Java </a></li>
-			<li class="category"><a href="/collections/livros-de-mobile"> Mobile </a></li>
-			<li class="category"><a href="/collections/livros-desenvolvimento-web"> Web </a></li>
-			<li class="category"><a href="/collections/outros"> Outros </a></li>
+			<li class="category"><a href="http://www.casadocodigo.com.br"><s:message code="navegacao.categoria.home" /></a></li>
+			<li class="category"><a href="/collections/livros-de-agile"> <s:message code="navegacao.categoria.agile" /> </a></li>
+			<li class="category"><a href="/collections/livros-de-front-end"> <s:message code="navegacao.categoria.front_end" /> </a></li>
+			<li class="category"><a href="/collections/livros-de-games"> <s:message code="navegacao.categoria.games" /> </a></li>
+			<li class="category"><a href="/collections/livros-de-java"> <s:message code="navegacao.categoria.java" /> </a></li>
+			<li class="category"><a href="/collections/livros-de-mobile"> <s:message code="navegacao.categoria.mobile" /> </a></li>
+			<li class="category"><a href="/collections/livros-desenvolvimento-web"> <s:message code="navegacao.categoria.web" /> </a></li>
+			<li class="category"><a href="/collections/outros"> <s:message code="navegacao.categoria.outros" /> </a></li>
 		</ul>
 	</nav>
 </body>
