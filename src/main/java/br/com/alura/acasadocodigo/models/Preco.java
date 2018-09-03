@@ -24,4 +24,9 @@ public class Preco {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return this.tipo.name() + " - " + this.valor;
+	}
+
 }
