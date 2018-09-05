@@ -80,7 +80,7 @@ public class ProdutosController {
 		Produto produto = dao.findById(id);
 		
 		modelAndView.addObject("produto", produto);
-		
+				
 		return modelAndView;
 	}
 
