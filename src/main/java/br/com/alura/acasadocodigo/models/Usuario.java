@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -25,7 +26,9 @@ public class Usuario implements UserDetails {
 	
 	private String senha;
 	
-	@OneToMany(fetch=FetchType.EAGER)
+	private String nome;
+	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Role> roles = new ArrayList<>();
 	
 
@@ -43,6 +46,14 @@ public class Usuario implements UserDetails {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public List<Role> getRoles() {
@@ -88,6 +99,5 @@ public class Usuario implements UserDetails {
 		return true;
 	}
 
-	
 	
 }

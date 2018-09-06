@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import br.com.alura.acasadocodigo.models.Role;
@@ -31,6 +30,10 @@ public class UsuarioDAO implements UserDetailsService {
 		return usuarios.get(0);
 	}
 	
+	public void gravar(Usuario usuario) {
+		manager.persist(usuario);
+	}
+	
 	private Usuario mock(String email) {
 		List<Role> roles = new ArrayList<>();
 		roles.add(new Role("ROLE_ADMIN"));
@@ -40,5 +43,7 @@ public class UsuarioDAO implements UserDetailsService {
 		usuario.setRoles(roles);
 		return usuario;
 	}
+
+	
 
 }
